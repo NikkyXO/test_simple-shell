@@ -1,23 +1,26 @@
+#include <stdio.h>
 #include "shell.h"
 
 int main()
 {
-    char *buffer;
+    	char **tokens;
+		char *line;
+		
 
-    while (1)
-    {
+    	while (1)
+    	{
 
-        printf("$ ");
+        	printPrompt();
 
-        char *line = get_line(buffer);
-        char **tokens = tokenization(line);
+        	line = readline();
+        	tokens = tokenization(line);
 
-        if (tokens[0] != NULL)
-        {
-            execute(tokens);
-        }
-        free(tokens);
-        free(line);
-    }
-    return (1);
+        	if (tokens[0] != NULL)
+        	{
+            		execute(tokens);
+        	}
+        	free(tokens);
+        	free(line);
+    	}
+    	return (1);
 }
